@@ -8,7 +8,6 @@ interface GameStatsProps {
 
 const GameStats: React.FC<GameStatsProps> = ({ winner, totalCities, lastCity }) => {
   let time = '00:00';
-
   return (
     <div className="max-w-xl mx-auto bg-white rounded-2xl md:h-fit h-full text-center py-10 text-lg">
       {winner === 'player' ? (

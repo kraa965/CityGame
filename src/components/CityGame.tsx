@@ -40,17 +40,19 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
       }, 1000);
     }
 
-    if (timeLeft === 0 || cities.filter((city) => city.charAt(0).toUpperCase() === lastLetter).length === 0) {
-      setWinner('bot');
-    }
-
     if (timeLeft === 0) {
+      // Проверка последнего сообщения в чате и определение победителя
+      const lastMessage = chat[chat.length - 1];
+      if (lastMessage && lastMessage.isPlayer) {
+        setWinner('player');
+      } else {
+        setWinner('bot');
+      }
       setGameEnded(true);
-      setWinner('player');
     }
 
     return () => clearInterval(timer);
-  }, [gameStarted, timeLeft, lastLetter, cities]);
+  }, [gameStarted, timeLeft, lastLetter, cities, chat]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
