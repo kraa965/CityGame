@@ -23,12 +23,13 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
   const [gameEnded, setGameEnded] = useState<boolean>(false);
   const [winner, setWinner] = useState<string>('');
   const [placeholder, setPlaceholder] = useState<string>('');
+  const [botShouldPlay, setBotShouldPlay] = useState<boolean>(true);
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setTimeLeft(120);
+    setTimeLeft(40);
   }, [currentCity, gameStarted]);
 
   useEffect(() => {
@@ -91,6 +92,7 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
   };
 
   const botTurn = (letter: string) => {
+    if (!botShouldPlay) return;
     const filteredCities = cities.filter((city) => {
       const lastChar = city.charAt(city.length - 1).toLowerCase();
       return (
@@ -114,6 +116,12 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
     addToChat(botCity, false);
     setIsPlayerTurn(true);
   };
+
+  useEffect(() => {
+    if (gameEnded) {
+      setBotShouldPlay(false);
+    }
+  }, [gameEnded]);
 
   const endsWithInvalidLetter = (city: string) => {
     const lastChar = city.charAt(city.length - 1).toLowerCase();
