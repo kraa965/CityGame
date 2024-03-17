@@ -29,7 +29,7 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setTimeLeft(120);
+    setTimeLeft(121);
   }, [currentCity, gameStarted]);
 
   useEffect(() => {
