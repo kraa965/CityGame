@@ -99,7 +99,8 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
         city.charAt(0).toUpperCase() === letter &&
         city.toUpperCase() !== currentCity &&
         !endsWithInvalidLetter(city) &&
-        !['ь', 'ъ'].includes(lastChar)
+        !['ь', 'ъ', 'ц'].includes(lastChar) &&
+        !chat.some((message) => message.text.toUpperCase() === city.toUpperCase())
       );
     });
 
