@@ -29,11 +29,11 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setTimeLeft(120);
+    setTimeLeft(5);
   }, [currentCity, gameStarted]);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: number;
 
     if (gameStarted && timeLeft > 0) {
       timer = setInterval(() => {
