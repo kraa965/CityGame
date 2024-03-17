@@ -99,7 +99,7 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
         city.charAt(0).toUpperCase() === letter &&
         city.toUpperCase() !== currentCity &&
         !endsWithInvalidLetter(city) &&
-        !['ь', 'ъ', 'ц'].includes(lastChar) &&
+        !['ь', 'ъ', 'ы', 'й', 'ц'].includes(lastChar) &&
         !chat.some((message) => message.text.toUpperCase() === city.toUpperCase())
       );
     });
@@ -126,7 +126,7 @@ const CityGame: React.FC<CityGameProps> = ({ cities, gameStarted }) => {
 
   const endsWithInvalidLetter = (city: string) => {
     const lastChar = city.charAt(city.length - 1).toLowerCase();
-    return ['ь', 'ъ', 'ы', 'й'].includes(lastChar);
+    return ['ь', 'ъ', 'ы', 'й', 'ц'].includes(lastChar);
   };
 
   const addToChat = (message: string, isPlayer: boolean) => {
